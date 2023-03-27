@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    Robot Framework selenuim 自动化测试 初体验 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  测试
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 18 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 13 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1667976759000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1667976759000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>Robot Framework selenuim 自动化测试 初体验</h1>
+    <p><a target="_blank" rel="noopener" href="https://github.com/robotframework/robotframework">Robot Framework</a> 对Selenium, Appium, 等框架语法进行了封装，要求的代码能力降低了, 使用和复用起来也更方便。一套框架可以通吃 GUI，接口，app等（3,4个小时总结出的经验，非常有可能不对）</p>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a><strong>环境搭建</strong></h1><ul>
+<li><p>下载<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QYhIzVfASuT6iUk_-IfSJg">谷歌浏览器Webdriver</a> 提取码 el24 下载完成后需要注册到系统的变量的Path中</p>
+</li>
+<li><p>安装Ride</p>
+<ul>
+<li><p>安装python3.7版本 <a target="_blank" rel="noopener" href="https://www.python.org/downloads/">下载地址</a> 注意为3.7版本</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/robotframework/RIDE">下载或Clone RIDE项目</a></p>
+</li>
+<li><p>解压之后到根目录下执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br><span class="line">python ./setup.py install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成之后会问是不是要在桌面创建一个快捷方式</p>
+</li>
+<li><p>如果没有创建可以到 RIDE的根目录下运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src/bin</span><br><span class="line">python ride.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成后运行起不来，参考下这个文章 （中文系统的问题）<a target="_blank" rel="noopener" href="https://www.pythonheidong.com/blog/article/53154/">https://www.pythonheidong.com/blog/article/53154/</a></p>
+</li>
+<li><p><strong>RIDE</strong>不能显示中文 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39184753/article/details/107661789">https://blog.csdn.net/qq_39184753&#x2F;article&#x2F;details&#x2F;107661789</a></p>
+</li>
+</ul>
+</li>
+<li><p>安装Seleniumlibrary 外部库</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html">文档</a> Seleniumlibrary 对selenium进行了语义化的封装</p>
+</li>
+<li><p>&#96;&#96;&#96;<br>pip install –upgrade robotframework-seleniumlibrary</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 运行RIDE时候右键使用**管理员权限**运行不然找不到Chromedriver，如果终端运行，运行的终端需要有管理员权限</span><br><span class="line"></span><br><span class="line"># 简单示例</span><br><span class="line"></span><br><span class="line">##### (百度搜索robot framework)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>*** Settings ***<br>Documentation     SeleniumLibrary<br>Library           SeleniumLibrary</p>
+<p>*** Test Cases ***<br>使用百度浏览器搜索 robot framework<br>    [Documentation]    Example test.<br>    打开浏览器<br>    输入查询条件<br>    点击查询按钮<br>    [Teardown]    关闭浏览器</p>
+<p>*** Keywords ***<br>打开浏览器<br>    Open Browser    <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>    chrome<br>    Wait Until Element Is Visible    id:kw</p>
+<p>输入查询条件<br>    INPUT TEXT    id:kw    robot framework</p>
+<p>点击查询按钮<br>    CLICK ELEMENT    id:su<br>    SLEEP    2 # 睡眠两秒</p>
+<p>关闭浏览器<br>    Close Browser</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Settings 设置</span><br><span class="line"></span><br><span class="line">- Document 文档说明</span><br><span class="line"></span><br><span class="line">- Library 引入外部库（SeleniumLibrary， Appnium）[查看链接](https://robotframework.org/#libraries)</span><br><span class="line">- Resource 复用代码块</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>*** Settings ***<br>Documentation     SeleniumLibrary<br>Library           SeleniumLibrary</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Variables 全局定义的变量</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>*** Variables ***<br>${LOGIN URL}      <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>   # 登录域名<br>${BROWSER}        gc    # 谷歌浏览器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Test Cases 测试用例</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>*** Test Cases ***<br>测试登录 # 用例名称<br>    打开浏览器 # 调用函数<br>    输入账号    admin   # 调用函数 和 函数参数<br>    输入密码    123456 # 调用函数 和 函数参数<br>    点击登录按钮<br>    日期会显示出来<br>    [Teardown]    关闭浏览器 # 生命周期 执行完了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Keywords 定义函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>*** Keywords ***<br>打开浏览器<br>    Open Browser    ${LOGIN URL}    ${BROWSER}<br>    Wait Until Element Is Visible    &#x2F;&#x2F;*[@id&#x3D;”app”]&#x2F;div[1]&#x2F;div[3]&#x2F;div&#x2F;form&#x2F;div[1]&#x2F;div&#x2F;div&#x2F;input</p>
+<p>输入账号<br>    [Arguments]    ${username}<br>    Input Text    &#x2F;&#x2F;*[@id&#x3D;”app”]&#x2F;div[1]&#x2F;div[3]&#x2F;div&#x2F;form&#x2F;div[1]&#x2F;div&#x2F;div&#x2F;input    ${username}</p>
+<p>输入密码<br>    [Arguments]    ${password}<br>    Input Text    &#x2F;&#x2F;*[@id&#x3D;”app”]&#x2F;div[1]&#x2F;div[3]&#x2F;div&#x2F;form&#x2F;div[2]&#x2F;div&#x2F;div&#x2F;input    ${password}</p>
+<p>点击登录按钮<br>    Click Button    &#x2F;&#x2F;*[@id&#x3D;”app”]&#x2F;div[1]&#x2F;div[3]&#x2F;div&#x2F;form&#x2F;div[3]&#x2F;div&#x2F;button</p>
+<p>日期会显示出来<br>    Wait Until Element Is Visible    class:bf-weather-content</p>
+<p>关闭浏览器<br>    Close Browser</p>
+<pre><code>
+</code></pre>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    微信 JSSDK 网页版代码封装 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 18 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 13 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1670936400000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1670936400000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>微信 JSSDK 网页版代码封装</h1>
+    <h1 id="需要在main-js引用改文件"><a href="#需要在main-js引用改文件" class="headerlink" title="需要在main.js引用改文件"></a>需要在main.js引用改文件</h1><h2 id="和Vue-router一起使用，如若改变-x2F-之前的Url需要重新授权"><a href="#和Vue-router一起使用，如若改变-x2F-之前的Url需要重新授权" class="headerlink" title="和Vue-router一起使用，如若改变&#x2F;#之前的Url需要重新授权"></a>和Vue-router一起使用，如若改变&#x2F;#之前的Url需要重新授权</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">import</span>(<span class="string">&#x27;@/common/wxsdk&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="variable constant_">WXSDK</span> <span class="keyword">from</span> <span class="string">&#x27;@/common/wxsdk&#x27;</span>;</span><br><span class="line"><span class="variable constant_">WXSDK</span>.<span class="title function_">chooseImage</span>().<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 本地图片Ids</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">await</span> <span class="variable constant_">WXSDK</span>.<span class="title function_">uploadImage</span>(<span class="variable language_">this</span>.<span class="property">src</span>); <span class="comment">// 上传到微信服务器</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> wx <span class="keyword">from</span> <span class="string">&#x27;weixin-js-sdk&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Env</span> <span class="keyword">from</span> <span class="string">&#x27;./env&#x27;</span></span><br><span class="line"></span><br><span class="line">interface getLocationCallback &#123; <span class="attr">latitude</span>: number, <span class="attr">longitude</span>: number, <span class="attr">speed</span>: number, <span class="attr">accuracy</span>: number &#125;</span><br><span class="line">interface openLocationOption &#123;</span><br><span class="line">    <span class="attr">latitude</span>: number <span class="comment">// 纬度，浮点数，范围为90 ~ -90</span></span><br><span class="line">    <span class="attr">longitude</span>: number <span class="comment">// 经度，浮点数，范围为180 ~ -180。</span></span><br><span class="line">    <span class="attr">name</span>: string <span class="comment">// 位置名</span></span><br><span class="line">    <span class="attr">address</span>: string <span class="comment">// 地址详情说明</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">WXSdk</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">jsApiList = [<span class="string">&#x27;getLocation&#x27;</span>, <span class="string">&#x27;openLocation&#x27;</span>, <span class="string">&#x27;chooseImage&#x27;</span>, <span class="string">&#x27;uploadImage&#x27;</span>, <span class="string">&#x27;translateVoice&#x27;</span>, <span class="string">&#x27;startRecord&#x27;</span>, <span class="string">&#x27;stopRecord&#x27;</span>], url = <span class="variable language_">document</span>.location</span>) &#123;</span><br><span class="line">        axios.<span class="title function_">get</span>(<span class="string">`<span class="subst">$&#123;Env.DATA_SERVER&#125;</span>/weixin/signature/new?url=<span class="subst">$&#123;url&#125;</span>`</span>).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> data = response.<span class="property">data</span> <span class="keyword">as</span> any</span><br><span class="line">            wx.<span class="title function_">config</span>(&#123;</span><br><span class="line">                <span class="attr">debug</span>: !<span class="title class_">Env</span>.<span class="property">PRODUCTION_MODE</span>, <span class="comment">// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span></span><br><span class="line">                <span class="attr">appId</span>: <span class="title class_">Env</span>.<span class="property">WX_APP_ID</span>, <span class="comment">// 必填，公众号的唯一标识</span></span><br><span class="line">                <span class="attr">timestamp</span>: data.<span class="property">timestamp</span>, <span class="comment">// 必填，生成签名的时间戳</span></span><br><span class="line">                <span class="attr">nonceStr</span>: data.<span class="property">nonceStr</span>, <span class="comment">// 必填，生成签名的随机串</span></span><br><span class="line">                <span class="attr">signature</span>: data.<span class="property">signature</span>, <span class="comment">// 必填，签名</span></span><br><span class="line">                <span class="attr">jsApiList</span>: jsApiList <span class="comment">// 必填，需要使用的JS接口列表</span></span><br><span class="line">            &#125;)</span><br><span class="line">            wx.<span class="title function_">error</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">error</span>(res)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="title function_">uploadImage</span>(<span class="attr">localId</span>: string): <span class="title class_">Promise</span>&lt;any&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">call</span>(<span class="string">&#x27;uploadImage&#x27;</span>, &#123;</span><br><span class="line">                <span class="attr">localId</span>: localId,</span><br><span class="line">                <span class="attr">isShowProgressTips</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="title function_">resolve</span>(res)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="title function_">chooseImage</span>(): <span class="title class_">Promise</span>&lt;any&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> me = <span class="variable language_">this</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            me.<span class="title function_">call</span>(<span class="string">&#x27;chooseImage&#x27;</span>, &#123;</span><br><span class="line">                <span class="attr">count</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="attr">sizeType</span>: [<span class="string">&#x27;compressed&#x27;</span>],</span><br><span class="line">                <span class="attr">sourceType</span>: [<span class="string">&#x27;camera&#x27;</span>],</span><br><span class="line">                <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="title function_">resolve</span>(res.<span class="property">localIds</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="title function_">getLocation</span>(): <span class="title class_">Promise</span>&lt;getLocationCallback&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>&lt;getLocationCallback&gt;(<span class="function">(<span class="params">resolve, rejct</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">call</span>(<span class="string">&#x27;getLocation&#x27;</span>, &#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="string">&#x27;gcj02&#x27;</span>, <span class="comment">// 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入&#x27;gcj02&#x27;</span></span><br><span class="line">                <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="title function_">resolve</span>(res <span class="keyword">as</span> any)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="title function_">openLocation</span>(<span class="attr">params</span>: openLocationOption): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">call</span>(<span class="string">&#x27;openLocation&#x27;</span>, params)</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="title function_">startRecord</span>(): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">call</span>(<span class="string">&#x27;startRecord&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="keyword">async</span> <span class="title function_">stopNTranslate</span>(): <span class="title class_">Promise</span>&lt;string&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> voiceId = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="title function_">stopRecord</span>()</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="title function_">translateVoice</span>(voiceId)</span><br><span class="line">    &#125;</span><br><span class="line">    private <span class="title function_">stopRecord</span>(): <span class="title class_">Promise</span>&lt;string&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>&lt;string&gt;(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">call</span>(<span class="string">&#x27;stopRecord&#x27;</span>, &#123;</span><br><span class="line">                <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="keyword">var</span> localId = res.<span class="property">localId</span>;</span><br><span class="line">                    <span class="title function_">resolve</span>(localId)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    private <span class="title function_">translateVoice</span>(<span class="attr">localId</span>: string): <span class="title class_">Promise</span>&lt;string&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">call</span>(<span class="string">&#x27;translateVoice&#x27;</span>, &#123;</span><br><span class="line">                <span class="attr">localId</span>: localId, <span class="comment">// 需要识别的音频的本地Id，由录音相关接口获得</span></span><br><span class="line">                <span class="attr">isShowProgressTips</span>: <span class="number">1</span>, <span class="comment">// 默认为1，显示进度提示</span></span><br><span class="line">                <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">                    <span class="title function_">resolve</span>(res.<span class="property">translateResult</span>); <span class="comment">// 语音识别的结果</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    private <span class="title function_">call</span>(<span class="params">methodName: string, methodParams?: any</span>) &#123;</span><br><span class="line">        wx.<span class="title function_">ready</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            wx[methodName].<span class="title function_">call</span>(&#123;&#125;, methodParams)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">WXSdk</span>()</span><br></pre></td></tr></table></figure>
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

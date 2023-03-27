@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    cordova 插件封装 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  移动端
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 18 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 13 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1667976137000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1667976137000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>cordova 插件封装</h1>
+    <h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="plugman"><a href="#plugman" class="headerlink" title="plugman"></a>plugman</h3><ul>
+<li>create<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugman create --name &lt;pluginName&gt; --plugin_id &lt;pluginID&gt; --plugin_version &lt;version&gt; [--path &lt;directory&gt;] [--variable NAME=VALUE]</span><br></pre></td></tr></table></figure></li>
+<li>platform<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugman platform add --platform_name &lt;platform&gt;</span><br></pre></td></tr></table></figure></li>
+<li>package.json<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugman createpackagejson &lt;directory&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="plugin-xml"><a href="#plugin-xml" class="headerlink" title="plugin.xml"></a>plugin.xml</h2><ul>
+<li>plugin name<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">js-module</span> <span class="attr">name</span>=<span class="string">&quot;streamax&quot;</span> <span class="attr">src</span>=<span class="string">&quot;www/streamax.js&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">clobbers</span> <span class="attr">target</span>=<span class="string">&quot;cordova.plugins.streamax&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">js-module</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cordova.<span class="property">plugins</span>.<span class="property">streamax</span>.<span class="title function_">toast</span>(</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    [&#123; text &#125;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li>lib files<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">lib-file</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/streamax.jar&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>resource-file<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resource-file</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/armeabi&quot;</span> <span class="attr">target</span>=<span class="string">&quot;jniLibs/armeabi&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>source-file<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">source-file</span> <span class="attr">src</span>=<span class="string">&quot;src/android/xxxx.java&quot;</span> <span class="attr">target-dir</span>=<span class="string">&quot;src/com/packagename/www&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="register-methods-注册插件函数"><a href="#register-methods-注册插件函数" class="headerlink" title="register methods 注册插件函数"></a>register methods 注册插件函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ObjectName</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ObjectName</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">goVideoPage</span> = <span class="keyword">function</span>(<span class="params">success, error</span>) &#123;</span><br><span class="line">  <span class="title function_">exec</span>(success, error, <span class="string">&quot;pluginName&quot;</span>, <span class="string">&quot;methodName&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> me = <span class="keyword">new</span> <span class="title class_">ObjectName</span>();</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = me;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="fireWindowEvent-触发window事件"><a href="#fireWindowEvent-触发window事件" class="headerlink" title="fireWindowEvent 触发window事件"></a>fireWindowEvent 触发window事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> channel = <span class="built_in">require</span>(<span class="string">&quot;cordova/channel&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Streamax</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> me = <span class="keyword">new</span> <span class="title class_">Streamax</span>();</span><br><span class="line"></span><br><span class="line">channel.<span class="property">onCordovaReady</span>.<span class="title function_">subscribe</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  me.<span class="title function_">registerKeyboardListener</span>(</span><br><span class="line">    <span class="keyword">function</span>(<span class="params">streamaxKeycode</span>) &#123;</span><br><span class="line">      cordova.<span class="title function_">fireWindowEvent</span>(<span class="string">&quot;onkeyboardclick&quot;</span>, &#123; streamaxKeycode &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">error</span>(e);</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><h3 id="gradle-使用gradle"><a href="#gradle-使用gradle" class="headerlink" title="gradle 使用gradle"></a>gradle 使用gradle</h3><ul>
+<li>plugin.xml<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">framework</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/common.gradle&quot;</span> <span class="attr">custom</span>=<span class="string">&quot;true&quot;</span> <span class="attr">type</span>=<span class="string">&quot;gradleReference&quot;</span> /&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>xxx.gradle<ul>
+<li>例子: 阿里云push<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> minSdkVersion = <span class="number">19</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(cdvMinSdkVersion == <span class="keyword">null</span>) &#123;</span><br><span class="line">    ext.cdvMinSdkVersion = minSdkVersion;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (cdvMinSdkVersion.<span class="keyword">toInteger</span>() &lt; minSdkVersion) &#123;</span><br><span class="line">    ext.cdvMinSdkVersion = minSdkVersion;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId <span class="string">&quot;com.xxx.xxx&quot;</span> <span class="comment">//包名</span></span><br><span class="line">        ndk &#123;</span><br><span class="line">            <span class="comment">//选择要添加的对应cpu类型的.so库。</span></span><br><span class="line">            abiFilters <span class="string">&#x27;armeabi&#x27;</span>, <span class="string">&#x27;arm64-v8a&#x27;</span>, <span class="string">&#x27;armeabi-v7a&#x27;</span>, <span class="string">&#x27;x86&#x27;</span>, <span class="string">&#x27;x86_64&#x27;</span>, <span class="string">&#x27;mips&#x27;</span>, <span class="string">&#x27;mips64&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    api <span class="string">&#x27;com.aliyun.ams:alicloud-android-push:3.1.4@aar&#x27;</span></span><br><span class="line">    api <span class="string">&#x27;com.aliyun.ams:alicloud-android-utils:1.1.3&#x27;</span></span><br><span class="line">    api <span class="string">&#x27;com.aliyun.ams:alicloud-android-beacon:1.0.1&#x27;</span></span><br><span class="line">    api <span class="string">&#x27;com.aliyun.ams:alicloud-android-ut:5.4.0&#x27;</span></span><br><span class="line">    api <span class="string">&#x27;com.aliyun.ams:alicloud-android-push:3.1.4&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="reflect-methods-方法映射"><a href="#reflect-methods-方法映射" class="headerlink" title="reflect methods 方法映射"></a>reflect methods 方法映射</h3><ul>
+<li>execute<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">execute</span><span class="params">(String action, JSONArray args, CallbackContext callbackContext)</span> &#123;</span><br><span class="line">        Class&lt;T&gt; classname = T.class;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> classname.getDeclaredMethod(action, JSONArray.class, CallbackContext.class);</span><br><span class="line">            <span class="keyword">return</span> (Boolean) method.invoke(<span class="built_in">this</span>, args, callbackContext);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            callbackContext.error(<span class="string">&quot;404&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">            callbackContext.error(<span class="string">&quot;500&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            callbackContext.error(<span class="string">&quot;500&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            callbackContext.error(<span class="string">&quot;500&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>映射方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">openMapLocation</span><span class="params">(JSONArray args, <span class="keyword">final</span> CallbackContext callbackContext)</span> <span class="keyword">throws</span> JSONException &#123;</span><br><span class="line">       <span class="type">JSONObject</span> <span class="variable">obj</span> <span class="operator">=</span> args.getJSONObject(<span class="number">0</span>);</span><br><span class="line">       Log.wtf(obj.toString())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>方法callback<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接返回</span></span><br><span class="line">callbackContext.error(<span class="string">&quot;转照片失败&quot;</span>);</span><br><span class="line">callbackContext.sucess(<span class="string">&quot;转照片失败&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多次触发</span></span><br><span class="line"><span class="comment">// 需要设置 setKeepCallback</span></span><br><span class="line"><span class="type">PluginResult</span> <span class="variable">noResult</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PluginResult</span>(PluginResult.Status.NO_RESULT);</span><br><span class="line">noResult.setKeepCallback(<span class="literal">true</span>);</span><br><span class="line">callbackContext.sendPluginResult(noResult);</span><br></pre></td></tr></table></figure></li>
+<li>线程<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行Java代码时候 需要和UI交互的用UI线程</span></span><br><span class="line">cordova.getActivity().runOnUiThread(() -&gt; &#123; <span class="comment">// lambda表达式</span></span><br><span class="line">    <span class="comment">// 需要执行的代码</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 多线程</span></span><br><span class="line">cordova.getThreadPool().execute(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123; <span class="comment">// 正常写法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>引入依赖文件<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// aar 需要用gradle引入</span><br><span class="line"><span class="tag">&lt;<span class="name">lib-file</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/nxminterface.aar&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">lib-file</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/xnet-v1.0.0.jar&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resource-file</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/armeabi&quot;</span> <span class="attr">target</span>=<span class="string">&quot;jniLibs/armeabi&quot;</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">framework</span> <span class="attr">src</span>=<span class="string">&quot;src/android/libs/bundle.gradle&quot;</span> <span class="attr">custom</span>=<span class="string">&quot;true&quot;</span> <span class="attr">type</span>=<span class="string">&quot;gradleReference&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

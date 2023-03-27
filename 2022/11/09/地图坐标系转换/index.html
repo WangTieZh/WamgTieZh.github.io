@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    地图坐标系转换 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  地图
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 18 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 13 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1667976381000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1667976381000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>地图坐标系转换</h1>
+    <h2 id="坐标系的转换"><a href="#坐标系的转换" class="headerlink" title="坐标系的转换"></a>坐标系的转换</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 坐标转换。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 支持 GPS、GCJ、BD(Baidu) 三种坐标系。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 坐标精度；保留六位小数。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> pi = <span class="number">3.1415926535897932384626</span>;</span><br><span class="line"><span class="keyword">const</span> xpi = (pi * <span class="number">3000.0</span>) / <span class="number">180.0</span>;</span><br><span class="line"><span class="keyword">const</span> a = <span class="number">6378245.0</span>;</span><br><span class="line"><span class="keyword">const</span> ee = <span class="number">0.00669342162296594323</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">transformLat</span>(<span class="params">x, y</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> ret =</span><br><span class="line">        -<span class="number">100.0</span> +</span><br><span class="line">        <span class="number">2.0</span> * x +</span><br><span class="line">        <span class="number">3.0</span> * y +</span><br><span class="line">        <span class="number">0.2</span> * y * y +</span><br><span class="line">        <span class="number">0.1</span> * x * y +</span><br><span class="line">        <span class="number">0.2</span> * <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="title class_">Math</span>.<span class="title function_">abs</span>(x));</span><br><span class="line">    ret +=</span><br><span class="line">        ((<span class="number">20.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(<span class="number">6.0</span> * x * pi) + <span class="number">20.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(<span class="number">2.0</span> * x * pi)) *</span><br><span class="line">            <span class="number">2.0</span>) /</span><br><span class="line">        <span class="number">3.0</span>;</span><br><span class="line">    ret +=</span><br><span class="line">        ((<span class="number">20.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(y * pi) + <span class="number">40.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>((y / <span class="number">3.0</span>) * pi)) * <span class="number">2.0</span>) /</span><br><span class="line">        <span class="number">3.0</span>;</span><br><span class="line">    ret +=</span><br><span class="line">        ((<span class="number">160.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>((y / <span class="number">12.0</span>) * pi) + <span class="number">320</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>((y * pi) / <span class="number">30.0</span>)) *</span><br><span class="line">            <span class="number">2.0</span>) /</span><br><span class="line">        <span class="number">3.0</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">transformLng</span>(<span class="params">x, y</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> ret =</span><br><span class="line">        <span class="number">300.0</span> +</span><br><span class="line">        x +</span><br><span class="line">        <span class="number">2.0</span> * y +</span><br><span class="line">        <span class="number">0.1</span> * x * x +</span><br><span class="line">        <span class="number">0.1</span> * x * y +</span><br><span class="line">        <span class="number">0.1</span> * <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="title class_">Math</span>.<span class="title function_">abs</span>(x));</span><br><span class="line">    ret +=</span><br><span class="line">        ((<span class="number">20.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(<span class="number">6.0</span> * x * pi) + <span class="number">20.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(<span class="number">2.0</span> * x * pi)) *</span><br><span class="line">            <span class="number">2.0</span>) /</span><br><span class="line">        <span class="number">3.0</span>;</span><br><span class="line">    ret +=</span><br><span class="line">        ((<span class="number">20.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(x * pi) + <span class="number">40.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>((x / <span class="number">3.0</span>) * pi)) * <span class="number">2.0</span>) /</span><br><span class="line">        <span class="number">3.0</span>;</span><br><span class="line">    ret +=</span><br><span class="line">        ((<span class="number">150.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>((x / <span class="number">12.0</span>) * pi) +</span><br><span class="line">            <span class="number">300.0</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>((x / <span class="number">30.0</span>) * pi)) *</span><br><span class="line">            <span class="number">2.0</span>) /</span><br><span class="line">        <span class="number">3.0</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">BD2GCJ</span>(<span class="params">p</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> x = p.<span class="property">lng</span> - <span class="number">0.0065</span>;</span><br><span class="line">    <span class="keyword">const</span> y = p.<span class="property">lat</span> - <span class="number">0.006</span>;</span><br><span class="line">    <span class="keyword">const</span> z = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(x * x + y * y) - <span class="number">0.00002</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(y * xpi);</span><br><span class="line">    <span class="keyword">const</span> theta = <span class="title class_">Math</span>.<span class="title function_">atan2</span>(y, x) - <span class="number">0.000003</span> * <span class="title class_">Math</span>.<span class="title function_">cos</span>(x * xpi);</span><br><span class="line">    <span class="keyword">const</span> lng = z * <span class="title class_">Math</span>.<span class="title function_">cos</span>(theta);</span><br><span class="line">    <span class="keyword">const</span> lat = z * <span class="title class_">Math</span>.<span class="title function_">sin</span>(theta);</span><br><span class="line">    <span class="keyword">return</span> &#123;lng, lat&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">GCJ2BD</span>(<span class="params">p</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> x = p.<span class="property">lng</span>;</span><br><span class="line">    <span class="keyword">const</span> y = p.<span class="property">lat</span>;</span><br><span class="line">    <span class="keyword">const</span> z = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(x * x + y * y) + <span class="number">0.00002</span> * <span class="title class_">Math</span>.<span class="title function_">sin</span>(y * xpi);</span><br><span class="line">    <span class="keyword">const</span> theta = <span class="title class_">Math</span>.<span class="title function_">atan2</span>(y, x) + <span class="number">0.000003</span> * <span class="title class_">Math</span>.<span class="title function_">cos</span>(x * xpi);</span><br><span class="line">    <span class="keyword">const</span> lng = z * <span class="title class_">Math</span>.<span class="title function_">cos</span>(theta) + <span class="number">0.0065</span>;</span><br><span class="line">    <span class="keyword">const</span> lat = z * <span class="title class_">Math</span>.<span class="title function_">sin</span>(theta) + <span class="number">0.006</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;lng, lat&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">GPS2GCJ</span>(<span class="params">p</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> dlat = <span class="title function_">transformLat</span>(p.<span class="property">lng</span> - <span class="number">105.0</span>, p.<span class="property">lat</span> - <span class="number">35.0</span>);</span><br><span class="line">    <span class="keyword">let</span> dlng = <span class="title function_">transformLng</span>(p.<span class="property">lng</span> - <span class="number">105.0</span>, p.<span class="property">lat</span> - <span class="number">35.0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> radLat = (p.<span class="property">lat</span> / <span class="number">180.0</span>) * pi;</span><br><span class="line">    <span class="keyword">let</span> magic = <span class="title class_">Math</span>.<span class="title function_">sin</span>(radLat);</span><br><span class="line"></span><br><span class="line">    magic = <span class="number">1</span> - ee * magic * magic;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> sqrtMagic = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(magic);</span><br><span class="line">    dlat = (dlat * <span class="number">180.0</span>) / (((a * (<span class="number">1</span> - ee)) / (magic * sqrtMagic)) * pi);</span><br><span class="line">    dlng = (dlng * <span class="number">180.0</span>) / ((a / sqrtMagic) * <span class="title class_">Math</span>.<span class="title function_">cos</span>(radLat) * pi);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">lng</span>: p.<span class="property">lng</span> + dlng,</span><br><span class="line">        <span class="attr">lat</span>: p.<span class="property">lat</span> + dlat,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">GCJ2GPS</span>(<span class="params">p</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> pp = <span class="title class_">GPS2GCJ</span>(p);</span><br><span class="line">    <span class="keyword">const</span> lng = <span class="number">2</span> * p.<span class="property">lng</span> - pp.<span class="property">lng</span>;</span><br><span class="line">    <span class="keyword">const</span> lat = <span class="number">2</span> * p.<span class="property">lat</span> - pp.<span class="property">lat</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;lng, lat&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

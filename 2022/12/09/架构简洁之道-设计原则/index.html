@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    架构简洁之道-设计原则 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 18 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 11 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 13 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1670587200000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1670587200000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>架构简洁之道-设计原则</h1>
+    <h2 id="设计原则（SOLID）"><a href="#设计原则（SOLID）" class="headerlink" title="设计原则（SOLID）"></a>设计原则（SOLID）</h2><p>SOLID原则主要作用就是告诉我们如何将数据和函数组合成类，以及如何将这些链接起来成为程序。</p>
+<h3 id="软件构建中层结构的主要目标"><a href="#软件构建中层结构的主要目标" class="headerlink" title="软件构建中层结构的主要目标"></a>软件构建中层结构的主要目标</h3><ul>
+<li>使软件可以容忍被改动</li>
+<li>使软件更容易被理解</li>
+<li>构建可在多个软件系统中复用的组件</li>
+</ul>
+<h3 id="SOLID"><a href="#SOLID" class="headerlink" title="SOLID"></a>SOLID</h3><ul>
+<li>SRP：单一职责原则</li>
+<li>OCP：开闭原则</li>
+<li>LSP：里式替换原则</li>
+<li>LSP：接口隔离原则</li>
+<li>DIP：依赖反转原则</li>
+</ul>
+<h3 id="SRP-单一职责原则"><a href="#SRP-单一职责原则" class="headerlink" title="SRP 单一职责原则"></a>SRP 单一职责原则</h3><p>原则：任何一个软件模块（源代码文件）都应该只对某一类行为者负责。<br>主要讨论的是函数和类之间的关系，会以不同的形式出现。</p>
+<p>主要是负责类和函数的组合</p>
+<h3 id="OCP-开闭原则"><a href="#OCP-开闭原则" class="headerlink" title="OCP 开闭原则"></a>OCP 开闭原则</h3><p>原则：设计良好的计算机软件应该易于扩展，同时抗拒修改。<br>将代码的修改量降至最小：先将满足不同需求的代码分组SRP, 然后再来调整这些分组之间的依赖关系DIP<br>如果A组件不想被B组件上发生的修改所影响，那么就应该让B组件依赖于A组件</p>
+<ul>
+<li>依赖方向控制</li>
+<li>信息隐藏</li>
+</ul>
+<p>主要是负责类之间的指向关系</p>
+<h3 id="LSP-里氏替换原则"><a href="#LSP-里氏替换原则" class="headerlink" title="LSP 里氏替换原则"></a>LSP 里氏替换原则</h3><p>原则：这里需要的是一种可替换性:如果对于每个类型是 S 的对象 o1 都存在一个类型为 T 的对象 o2, 能使操作 T 类型的程序 P 在用 o2 替换 o1 时行为保持不变，我们就可以将 S 称为 T 的子类型。</p>
+<p>负责类的继承，泛化实现</p>
+<h3 id="ISP-接口隔离原则"><a href="#ISP-接口隔离原则" class="headerlink" title="ISP 接口隔离原则"></a>ISP 接口隔离原则</h3><p>原则：任何层次的软件设计如果依赖了它并不需要的东西，就会带来意料之外的麻烦。</p>
+<p>编程语言之间的关系：而正是这些语句带来了源代码之间的依赖关系，这也就导致了某些模块需要被重新编译和重新部署。这就是动态类型语言要比静态类型语言更灵活、稠合度更松的原因。</p>
+<p>软件设计：框架之间的依赖关系</p>
+<h3 id="DIP-依赖反转原则"><a href="#DIP-依赖反转原则" class="headerlink" title="DIP 依赖反转原则"></a>DIP 依赖反转原则</h3><p>原则：如果想要设计一个灵活的系统，在源代码层次的依赖关系中就应该多引用抽象类型，而非具体实现。我们主要应该关注的是软件系统内部那些会经常变动的 (volatile) 具体实现模块，这些模块是不停开发的，也就会经常出现变更</p>
+<p>编码守则</p>
+<ol>
+<li>应在代码中多使用抽象接口，尽量避免使用那些多变的具体实现类。</li>
+<li>不要在具体实现类上创建衍生类。</li>
+<li>不要覆盖 (override)包含具体实现的函数。</li>
+<li>应避免在代码中写入与任何具体实现相关的名字,或者是其他容易变动的事物的名字。</li>
+</ol>
+<p>依赖守则： 而跨越边界的、朝向抽象层的单向依赖关系则会成为一个设计守则</p>
+<p>抽象接口，易变的实现隔离。从而可以减少修改。（架构边界）<br>主要是负责 组织原则</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>
