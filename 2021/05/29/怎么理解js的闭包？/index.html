@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    怎么理解js的闭包？ | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  js
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1622289952000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1622289952000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>怎么理解js的闭包？</h1>
+    <h4 id="一闭包是什么"><a href="#一闭包是什么" class="headerlink" title="一闭包是什么"></a><strong>一闭包是什么</strong></h4><p>一个函数对其周围状态的引用捆绑在了一起，或者说函数被引用包围，这样的组合就是闭包。</p>
+<p>闭包可以让你再一个内层函数中访问到其外层函数的作用域。</p>
+<p>在js中每当创建一个函数，闭包就会在函数创建的同时被创建出来，作为函数内部，与外部连接起来的一座桥梁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">init</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&#x27;pzq&#x27;</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">displayMyName</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="title function_">alert</span>(name)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">displayMyName</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">init</span>()</span><br></pre></td></tr></table></figure>
+
+<p>​	displayMyName没有自己的局部变量，然而，由于闭包的特性，它可以访问到外部函数的变量。</p>
+<h4 id="二使用场景"><a href="#二使用场景" class="headerlink" title="二使用场景"></a><strong>二使用场景</strong></h4><p>任何的闭包使用场景都离不开两点：</p>
+<ul>
+<li>创建私有变量</li>
+<li>延长变量的生命周期</li>
+</ul>
+<p><code>一般函数的词法环境在函数返回后就被销毁了，到那时闭包会保存对创建时所在词法环境的引用，即便创建时所在的执行上下文被销毁，到那时创建时所在词法环境依然存在，一达到延长变量的生命周期的目的。</code></p>
+<h4 id="a-柯里化函数"><a href="#a-柯里化函数" class="headerlink" title="a.柯里化函数"></a><strong>a.柯里化函数</strong></h4><p>柯里化的目的在于避免频繁调用具有相同参数函数的同时，又能够轻松的重用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设我们有一个求长方形面积的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getArea</span>(<span class="params">width,height</span>)&#123;</span><br><span class="line">    retunr width * height</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//假如我们碰到的长方形的宽一直是10</span></span><br><span class="line"><span class="keyword">const</span> square1 = <span class="title function_">getArea</span>(<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line"><span class="keyword">const</span> square2 = <span class="title function_">getArea</span>(<span class="number">10</span>,<span class="number">30</span>)</span><br><span class="line"><span class="keyword">const</span> square3 = <span class="title function_">getArea</span>(<span class="number">10</span>,<span class="number">40</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//我们就可以使用闭包柯里化这个计算面积的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getArea</span>(<span class="params">width</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> height = &gt;&#123;</span><br><span class="line">        <span class="keyword">return</span> width * height</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> getTenWidthSquare=<span class="title function_">getArea</span>(<span class="number">10</span>)</span><br><span class="line"><span class="comment">//之后碰到了宽度为10的长方形就可以这样的计算面积。</span></span><br><span class="line"><span class="keyword">const</span> square4 = <span class="title function_">getTenWidthSquare</span>(<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<p>那么什么是柯里化？</p>
+<p>柯里化其实是一个函数式编程的一种写法，又叫做部分求值，官方的解释是，把接受多个参数的函数变换成只接受一个单一参数的函数，并且返回接收余下的参数和结果的新函数的技术，<em><strong>通俗点说就是把一个需要传递多参的函数转换成传递单参数的形式</strong></em></p>
+<h4 id="b-使用闭包模拟私有方法"><a href="#b-使用闭包模拟私有方法" class="headerlink" title="b.使用闭包模拟私有方法"></a>b.<strong>使用闭包模拟私有方法</strong></h4><p>​	在js中没有支持声明私有变量，但是我们可以使用闭包来模拟私有方法。</p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>如果不是特定任务需要使用到闭包，在其他函数中创建函数是不明智的，因为闭包在处理速度和内存消耗方面对脚本性能具有负面影响，</p>
+<p>原因就在于每个对象的创建方法都会被重新赋值。</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

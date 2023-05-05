@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    乾坤学习笔记 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  js
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1641799330000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1641799330000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>乾坤学习笔记</h1>
+    <p>乾坤是微前端的框架，那么什么是微前端呢？</p>
+<p>首先，随着公司业务的膨胀，处理业务的系统项目数量也跟着增加，运营人员在处理这些单一业务在各个系统之间来回穿梭，为了使运营人员在一个系统里给出操作，我们技术人员必须给出答案。<br>将 Web 应用由单一的单体应用转变为多个小型前端应用聚合为一的应用,各个前端应用还可以独立运行、独立开发、独立部署。 微前端不是单纯的前端框架或者工具，而是一套架构体系。</p>
+<p>有两个很火热的框架，一个是乾坤，一个是无界。</p>
+<p>其实iframe在，微前端这个概念之前一直都是前端解决整合系统的一个利器，但是世界上没有十全十美的东西。</p>
+<p>iframe的缺点<br>嵌套的多了会出现难以预料的滚动条，用户体验差，不易被搜索引擎搜索到，像移动设备，安卓，ios并不能很好的兼容，存在内存泄漏的问题。</p>
+<h4 id="qiankun的优势"><a href="#qiankun的优势" class="headerlink" title="qiankun的优势"></a>qiankun的优势</h4><p>简单：任意js框架均可以使用，微应用接入像使用iframe系统一样简单，但实际不是iframe。<br>完备：几乎包含所有构建前端系统时所需要的基本能力，如样式隔离、js沙箱、预加载等。比single-spa功能更加强大<br>生产可用：已在蚂蚁内外受过足够大量的线上系统的考验以及打磨，健壮性，值得信赖。</p>
+<p>采用react 作为基座（主应用不限制，可以是任何js框架）<br>1、在入口文件中设置挂载点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> reportWebVitals <span class="keyword">from</span> <span class="string">&#x27;./reportWebVitals&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; registerMicroApps, start &#125; <span class="keyword">from</span> <span class="string">&#x27;qiankun&#x27;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="title function_">registerMicroApps</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;react app&#x27;</span>, <span class="comment">// app name registered</span></span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;//localhost:3011&#x27;</span>,<span class="comment">//设置监听端口</span></span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#micro-app1&#x27;</span>,<span class="comment">//设置挂载点</span></span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/micro-app1&#x27;</span>,<span class="comment">//访问子应用的规则比如：主应用为localhost:3010，那访问该子应用的url应为localhost:3010/micro-app1</span></span><br><span class="line">    <span class="attr">props</span>:&#123;</span><br><span class="line">      <span class="attr">nickname</span>:<span class="string">&#x27;张三&#x27;</span></span><br><span class="line">        <span class="comment">//传递的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;vue app&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;//localhost:3012&#x27;</span>,<span class="comment">//设置监听端口</span></span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#micro-app2&#x27;</span>,<span class="comment">//设置挂载点</span></span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/micro-app2&#x27;</span>,<span class="comment">//访问子应用的规则比如：主应用为localhost:3010，那访问该子应用的url应为localhost:3010/micro-app2</span></span><br><span class="line">    <span class="attr">props</span>:&#123;</span><br><span class="line">      <span class="attr">nickname</span>:<span class="string">&#x27;李四&#x27;</span></span><br><span class="line">        <span class="comment">//传递的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br><span class="line"><span class="title function_">start</span>()挂载上去</span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span></span><br><span class="line">);</span><br><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="title function_">reportWebVitals</span>();</span><br></pre></td></tr></table></figure>
+
+<p>react子应用</p>
+<h4 id="子应用设置"><a href="#子应用设置" class="headerlink" title="子应用设置"></a><strong>子应用设置</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//src里设置public-path.js文件 为了设置图片引入</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">__POWERED_BY_QIANKUN__</span>) &#123;</span><br><span class="line">    __webpack_public_path__ = <span class="variable language_">window</span>.<span class="property">__INJECTED_PUBLIC_PATH_BY_QIANKUN__</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>下载react-app-rewired插件，更改子应用启动项</p>
+<p>npm  i  react-app-rewired    or @rescript&#x2F;cli (不推荐)</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//package.js文件中</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-app-rewired start&quot;</span><span class="punctuation">,</span><span class="comment">//更改启动区为react-app-rewired</span></span><br><span class="line">    <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-scripts build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-scripts test&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;eject&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-scripts eject&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>重写webpack中的方法，创建config-overrides.js文件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; name &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./package&#x27;</span>);</span><br><span class="line"> </span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">webpack</span>: <span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">    config.<span class="property">output</span>.<span class="property">library</span> = <span class="string">`<span class="subst">$&#123;name&#125;</span>-[name]`</span>;</span><br><span class="line">    config.<span class="property">output</span>.<span class="property">libraryTarget</span> = <span class="string">&#x27;umd&#x27;</span>;<span class="comment">//注入方式</span></span><br><span class="line">    <span class="comment">// config.output.jsonpFunction = `webpackJsonp_$&#123;name&#125;`;//*在2020-10-10发布的webpack 5中已将 output.jsonpFunction 更名为 output.chunkLoadingGlobal​​​​​​​</span></span><br><span class="line">    config.<span class="property">output</span>.<span class="property">chunkLoadingGlobal</span> = <span class="string">`webpackJsonp_<span class="subst">$&#123;name&#125;</span>`</span>;<span class="comment">// 中自动推断出一个唯一的构建名称，并将其作为 output.uniqueName 的默认值。这个值用于使所有潜在的冲突的全局变量成为唯一。</span></span><br><span class="line">    config.<span class="property">output</span>.<span class="property">globalObject</span> = <span class="string">&#x27;window&#x27;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  <span class="attr">devServer</span>: <span class="function">(<span class="params">_</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> config = _;</span><br><span class="line"> </span><br><span class="line">    config.<span class="property">headers</span> = &#123;</span><br><span class="line">      <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,<span class="comment">//允许跨域访问</span></span><br><span class="line">    &#125;;</span><br><span class="line">    config.<span class="property">historyApiFallback</span> = <span class="literal">true</span>;</span><br><span class="line">    config.<span class="property">hot</span> = <span class="literal">false</span>;</span><br><span class="line">    config.<span class="property">watchContentBase</span> = <span class="literal">false</span>;</span><br><span class="line">    config.<span class="property">liveReload</span> = <span class="literal">false</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="在mount生命周期函数中进行设置，校验是否有父应用-是否是单开的"><a href="#在mount生命周期函数中进行设置，校验是否有父应用-是否是单开的" class="headerlink" title="在mount生命周期函数中进行设置，校验是否有父应用 是否是单开的"></a>在mount生命周期函数中进行设置，校验是否有父应用 是否是单开的</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.css&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> reportWebVitals <span class="keyword">from</span> <span class="string">&#x27;./reportWebVitals&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./public-path.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">BrowserRouter</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>));</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">bootstrap</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">mount</span>(<span class="params">props</span>) &#123; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">  <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(</span><br><span class="line">    props.<span class="property">container</span> ? props.<span class="property">container</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#root&#x27;</span>) : <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">  ).<span class="title function_">render</span>(</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">BrowserRouter</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">basename</span>=<span class="string">&#123;window.__POWERED_BY_QIANKUN__</span> ?</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#x27;/<span class="attr">react</span>&#x27; <span class="attr">:</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#x27;/&#x27;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">__POWERED_BY_QIANKUN__</span>) &#123;</span><br><span class="line">  <span class="comment">//判断是否无父级，是否单开子应用</span></span><br><span class="line">  <span class="comment">// render(&#123;&#125;);</span></span><br><span class="line">  root.<span class="title function_">render</span>(</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">unmount</span>(<span class="params">props</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">update</span>(<span class="params">props</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// If you want to start measuring performance in your app, pass a function</span></span><br><span class="line"><span class="comment">// to log results (for example: reportWebVitals(console.log))</span></span><br><span class="line"><span class="comment">// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals</span></span><br><span class="line"><span class="title function_">reportWebVitals</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="在vue3子应用"><a href="#在vue3子应用" class="headerlink" title="在vue3子应用"></a>在vue3子应用</h4><p>配置vue3子应用，在 src 目录新增 public-path.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">__POWERED_BY_QIANKUN__</span>) &#123;  __webpack_public_path__ = <span class="variable language_">window</span>.<span class="property">__INJECTED_PUBLIC_PATH_BY_QIANKUN__</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//vue3</span></span><br><span class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> router = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> history = <span class="literal">null</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> app;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params">props = &#123;&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; container &#125; = props;</span><br><span class="line">    <span class="comment">// router =createApp(&#123;</span></span><br><span class="line">    <span class="comment">//   // base: window.__POWERED_BY_QIANKUN__ ? &#x27;/app-vue/&#x27; : &#x27;/&#x27;,</span></span><br><span class="line">    <span class="comment">//   history,</span></span><br><span class="line">    <span class="comment">//   routes,</span></span><br><span class="line">    <span class="comment">// &#125;);</span></span><br><span class="line">    app=<span class="title function_">createApp</span>(<span class="title class_">App</span>)<span class="comment">//挂载</span></span><br><span class="line">    app.<span class="title function_">use</span>(routes).<span class="title function_">mount</span>(container ? container.<span class="title function_">querySelector</span>(<span class="string">&#x27;#app&#x27;</span>) : <span class="string">&#x27;#app&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// 独立运行时</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">__POWERED_BY_QIANKUN__</span>) &#123;</span><br><span class="line">    <span class="title function_">render</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">bootstrap</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;[vue] vue app bootstraped&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">mount</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;[vue] props from main framework&#x27;</span>, props);</span><br><span class="line">  <span class="title function_">render</span>(props);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">unmount</span>(<span class="params"></span>) &#123;</span><br><span class="line">  instance.$destroy();</span><br><span class="line">  instance.<span class="property">$el</span>.<span class="property">innerHTML</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  instance = <span class="literal">null</span>;</span><br><span class="line">  router = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//vue2</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="title class_">Vue</span>.<span class="property">config</span>.<span class="property">productionTip</span> = <span class="literal">false</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> router = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">let</span> instance = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params">props = &#123;&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; container &#125; = props;</span><br><span class="line">  router = <span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">    <span class="attr">base</span>: <span class="variable language_">window</span>.<span class="property">__POWERED_BY_QIANKUN__</span> ? <span class="string">&#x27;/app-vue/&#x27;</span> : <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">    routes,</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  instance = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    router,</span><br><span class="line">    store,</span><br><span class="line">    <span class="attr">render</span>: <span class="function">(<span class="params">h</span>) =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>),</span><br><span class="line">  &#125;).$mount(container ? container.<span class="title function_">querySelector</span>(<span class="string">&#x27;#app&#x27;</span>) : <span class="string">&#x27;#app&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 独立运行时</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">__POWERED_BY_QIANKUN__</span>) &#123;</span><br><span class="line">  <span class="title function_">render</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vue.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">onst &#123; name &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./package&#x27;</span>);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">devServer</span>: &#123;</span><br><span class="line">    <span class="attr">port</span>:<span class="number">3012</span>,<span class="comment">//设置端口号</span></span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">library</span>: <span class="string">`<span class="subst">$&#123;name&#125;</span>-[name]`</span>,</span><br><span class="line">      <span class="attr">libraryTarget</span>: <span class="string">&#x27;umd&#x27;</span>, <span class="comment">// 把微应用打包成 umd 库格式</span></span><br><span class="line">      <span class="attr">jsonpFunction</span>: <span class="string">`webpackJsonp_<span class="subst">$&#123;name&#125;</span>`</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

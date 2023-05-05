@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    什么是响应式设计？响应式设计的基本原理是什么？如何做？ | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  js
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1628600202000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1628600202000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>什么是响应式设计？响应式设计的基本原理是什么？如何做？</h1>
+    <h4 id="1、响应式设计是什么？"><a href="#1、响应式设计是什么？" class="headerlink" title="1、响应式设计是什么？"></a><strong>1、响应式设计是什么？</strong></h4><p>响应式设计( Web design)是一种网络页面设计布局，页面的设计开发与，与用户的设备环境( 系统平台，屏幕尺寸，屏幕定向)进行相应的响应和调整。</p>
+<p>响应式界面最著名的一句话就是content is like water</p>
+<p>如果将屏幕看作容器，那么内容就像是水一样，响应式常见的特点就是适配pc+平板+手机。</p>
+<p> <img src="https://img-blog.csdnimg.cn/20210418225215404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDI0Njc5,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<h4 id="2、响应式设计的实现方式？"><a href="#2、响应式设计的实现方式？" class="headerlink" title="2、响应式设计的实现方式？"></a>2、响应式设计的实现方式？</h4><p>​	实现方式：基本原理就是通过媒体查询检测不同的色号被屏幕尺寸做处理，为了处理移动端，页面头部必须要有 声明，viewport。</p>
+<p>属性对应如下：</p>
+<p>​	width&#x3D;<strong>device-width是自适应手机屏幕的尺寸宽度</strong>。</p>
+<p>​	maximum-scale:是缩放比例的最大值。</p>
+<p>​	inital-scal’e:是缩放的初始化</p>
+<p>​	user-scalable：是用户可以缩放的操作。</p>
+<p>​	实现响应式布局的方式有：</p>
+<p>​		媒体查询、百分比、vw&#x2F;vh、rem、css3增加了更多的媒体查询，就像if条件表达式一样，我们可以设置不同类型的媒体条件，并根据对应的条件，给相应符合条件的媒体调用相对应的样式表。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen (<span class="attribute">min-width</span>: <span class="number">375px</span>) <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">600px</span>) &#123;</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="百分比"><a href="#百分比" class="headerlink" title="%百分比"></a><strong>%百分比</strong></h2><p>比如当浏览器的宽度或者高度发生变化时，通过百分比单位，可以使得浏览器中的组件的宽和高，都随着浏览器的变化而变化，从而实现响应式的效果。</p>
+<h2 id="vw-vh："><a href="#vw-vh：" class="headerlink" title="vw,vh："></a>vw,vh：</h2><p>相当于是视图窗口的宽度和高度，在任意层级元素使用vw单位时，1vw就等于视图宽度的百分之一，兼容性不好。</p>
+<h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a><strong>rem</strong></h2><p>rem是相对于根元素html的font-size属性，默认情况下浏览器字体大小为16px，此时1rem &#x3D; 16px</p>
+<p>em的参照大小是父级的大小</p>
+<p>或者我们可以在css之前插入js代码，动态的为html元素设置字体大小。</p>
+<p>​	这里假设我们的图纸大小是720</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//页面加载完成的事件</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span>=<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="title function_">getRem</span>(<span class="string">&quot;720&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onresize</span>=<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="title function_">getRem</span>(<span class="string">&quot;720&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getRem</span>(<span class="params">width</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> html = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;html&quot;</span>)</span><br><span class="line">    <span class="keyword">let</span> owidth = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span> | <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientWidth</span><span class="comment">//假设它是720</span></span><br><span class="line">    <span class="comment">//console.log(owidth);//随着页面变大rem也变大</span></span><br><span class="line">    html.<span class="property">style</span>.<span class="property">fontSize</span> = owidth/width*<span class="number">100</span> +<span class="string">&quot;px&quot;</span> <span class="comment">//页面宽度除设计给的宽度*100</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h4 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h4><p>​		响应式布局的优势，面对不同分辨率设备灵活性强大，能够快捷解决多设备显示适应问题，</p>
+<p>缺点：</p>
+<p>​	兼容各种设备，工作量大，效率低。<br>​	代码累赘，会出现很多重复的代码，以及重复的隐藏元素，加载时间长。<br>​	其实是一种折中性质的设计方案。由于多方面因 而达不到最佳效果。</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

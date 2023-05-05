@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    vue2cli+koa2使用socket.io做聊天 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  js
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1662011715000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1662011715000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>vue2cli+koa2使用socket.io做聊天</h1>
+    <p>最近项目要使用到双向通信技术，使用socket.io踩了一些坑记录一下。</p>
+<p>socket.io的是底层是封装了ajax轮询，轮询又分为长短轮询<br>短轮询：通过客户端定期轮询来询问服务端是否有新的信息产生，缺点也是显而易见，轮询间隔大了则信息不够实时，轮询间隔过小又会消耗过多的流量，增加服务器的负担。<br>长轮询：需要服务端做相应的修改来支持。客户端向服务端发送请求时，如果此时服务端没有新的信息产生，并不立刻返回，而是Hang住一段时间等有新的信息或者超时再返回，客户端收到服务器的应答后继续轮询。可以看到长轮询比短轮询可以减少大量无用的请求，并且客户端接收取新消息也会实时不少。</p>
+<p>项目：vue3cli+koa2</p>
+<p><strong>服务器</strong><br>npm i socket.io  -S</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&#x27;koa-router&#x27;</span>)()</span><br><span class="line"><span class="keyword">let</span> httpServer = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>).<span class="title class_">Server</span>();</span><br><span class="line"><span class="keyword">let</span> io = <span class="built_in">require</span>(<span class="string">&#x27;socket.io&#x27;</span>)(httpServer, &#123;</span><br><span class="line">  <span class="comment">//如果前端代理不能解决跨域，建议,配置cors，解决同源策略问题</span></span><br><span class="line">  <span class="attr">cors</span>: &#123;</span><br><span class="line">    <span class="attr">origin</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">methods</span>: [<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立socket-io连接"><a href="#建立socket-io连接" class="headerlink" title="建立socket.io连接"></a>建立socket.io连接</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务端监听连接状态：io的connection事件表示客户端与服务端成功建立连接，它接收一个回调函数，回调函数会接收一个socket参数。</span></span><br><span class="line"> io.<span class="title function_">on</span>(<span class="string">&#x27;connection&#x27;</span>, <span class="function">(<span class="params">socket</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="comment">// console.log(socket);</span></span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;client connect server, ok!&#x27;</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// io.emit()方法用于向服务端发送消息，参数1表示自定义的数据名，参数2表示需要配合事件传入的参数</span></span><br><span class="line">   io.<span class="title function_">emit</span>(<span class="string">&#x27;server&#x27;</span>, &#123; <span class="attr">msg</span>: <span class="string">&#x27;client connect server success&#x27;</span> &#125;);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// socket.broadcast.emit()表示向除了自己以外的客户端发送消息</span></span><br><span class="line">   socket.<span class="property">broadcast</span>.<span class="title function_">emit</span>(<span class="string">&#x27;server&#x27;</span>, &#123; <span class="attr">msg</span>: <span class="string">&#x27;broadcast&#x27;</span> &#125;);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 监听断开连接状态：socket的disconnect事件表示客户端与服务端断开连接</span></span><br><span class="line">   socket.<span class="title function_">on</span>(<span class="string">&#x27;disconnect&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;connect disconnect&#x27;</span>);</span><br><span class="line">   &#125;);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 与客户端对应的接收指定的消息</span></span><br><span class="line">   socket.<span class="title function_">on</span>(<span class="string">&#x27;client&#x27;</span>, <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">     cosnole.<span class="title function_">log</span>(data,<span class="string">&#x27;******123456789********&#x27;</span>);<span class="comment">// hi server</span></span><br><span class="line">   &#125;);</span><br><span class="line"></span><br><span class="line">   socket.<span class="title function_">disconnect</span>();</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>npm i vue-socket.io -S</p>
+<p>npm i socket.io-client -S</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;chatmain&quot;&gt;</span><br><span class="line">      &lt;!-- </span><br><span class="line">          可以通过flag这个标识来判断----</span><br><span class="line">          1、使用v-if 做头像在左边还是在右边。</span><br><span class="line">          2、气泡的小尾巴在左边还是在右边，可以添加两个小气泡类，通过flag 判断赋予。</span><br><span class="line">          3、做聊天头像和气泡一行显示并且垂直居中，可以通过把头像，和气泡转化为display:inline-block;+vertical-align:middle;</span><br><span class="line">          4、设置聊天对象居左居右？那么还是判断flag，设置text-align:&#x27;left || right&#x27;就可以了。</span><br><span class="line">         --&gt;</span><br><span class="line">      &lt;div class=&quot;chatitem&quot; :data-auth=&quot;item.flag&quot; v-for=&quot;(item, index) of ls.info&quot; :key=&quot;index&quot;</span><br><span class="line">        :style=&quot;&#123; textAlign: item.flag == &#x27;me&#x27; ? &#x27;right&#x27; : &#x27;left&#x27; &#125;&quot;&gt;</span><br><span class="line">        &lt;img :src=&quot;item.avantar&quot; alt=&quot;&quot; v-if=&quot;item.flag === &#x27;you&#x27;&quot; style=&quot;margin-right: 10px;&quot;&gt;</span><br><span class="line">        &lt;div :class=&quot;item.flag === &#x27;me&#x27; ? &#x27;arrow_box_me&#x27; : &#x27;arrow_box_you&#x27;&quot;&gt;</span><br><span class="line">          &#123;&#123; item.msg &#125;&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;img :src=&quot;item.avantar&quot; alt=&quot;&quot; v-if=&quot;item.flag === &#x27;me&#x27;&quot; style=&quot;margin-left: 10px;&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;chatfoot&quot;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; v-model=&quot;inputvalue&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button @click=&quot;sendinfo&quot;&gt;发送&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#x27;./assets/qipao.css&#x27;</span><br><span class="line">import &#x27;./assets/basecss.css&#x27;</span><br><span class="line">import &#123; onMounted, reactive, ref &#125; from &#x27;vue&#x27;;</span><br><span class="line">import vueSocketIo from &#x27;vue-socket.io&#x27;</span><br><span class="line">import SocketIO from &#x27;socket.io-client&#x27;</span><br><span class="line">let baseT = reactive(&#123;</span><br><span class="line">  from: &#123;</span><br><span class="line">    id: &quot;pzq&quot;,</span><br><span class="line">    name: &quot;潘子庆&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 此处的to 是很重要的东西 需要一个你需要连接的对象。它是唯一的一个客户端标示。</span><br><span class="line">  to: &#123;</span><br><span class="line">    id: &quot;&quot;,</span><br><span class="line">    name: &quot;&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//数据</span><br><span class="line">let ls = reactive(&#123;</span><br><span class="line">  info: [</span><br><span class="line">    &#123;</span><br><span class="line">      avantar: &quot;https://img2.baidu.com/it/u=2421090168,324781765&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=500&amp;h=500&quot;,</span><br><span class="line">      image: null,</span><br><span class="line">      msg: &quot;潘子庆！！！你好！！！！&quot;,</span><br><span class="line">      flag: &quot;you&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">      avantar: &quot;https://img0.baidu.com/it/u=1624701516,3985681371&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=500&amp;h=500&quot;,</span><br><span class="line">      image: null,</span><br><span class="line">      msg: &quot;您好！！！&quot;,</span><br><span class="line">      flag: &quot;me&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var socket = new vueSocketIo(&#123;</span><br><span class="line">  debug: true,</span><br><span class="line">  connection: SocketIO(&#x27;http://localhost:3001&#x27;, &#123;</span><br><span class="line">    autoConnect: true,//自动连接</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">//接受服务端发来的消息</span><br><span class="line">socket.io.on(&#x27;server&#x27;, (data) =&gt; &#123;</span><br><span class="line">  console.log(data)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">let inputvalue=ref(&quot;&quot;)</span><br><span class="line">let sendinfo = () =&gt; &#123;</span><br><span class="line">  if (inputvalue.value!==&#x27;&#x27;) &#123;</span><br><span class="line">    //向服务器发送消息</span><br><span class="line">    socket.io.emit(&#x27;client&#x27;,inputvalue.value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">/* 给左边还是给右边 */</span><br><span class="line">* &#123;</span><br><span class="line">  margin: 0;</span><br><span class="line">  padding: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>踩坑1、</p>
+<p>其实io和websocket是有区别的！也就是说socket.io并不负责通信逻辑，它是抽离出来的一组接口，只是传输层控制协议，不能代表websocket，如果要和浏览器进行通讯，需要使用的是socket.io-client。</p>
+<p>踩坑2、尝试用socket.io-client，你会发现socket.io会出现跨域问题，不是说websocket技术不会出现跨域吗？</p>
+<p> <img src="https://img-blog.csdnimg.cn/2020112510323831.png#pic_center" alt="img"> </p>
+<p>踩坑3、使用proxy去解决跨域，发现还是不行事阿！！！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">lintOnSave</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">devServer</span>: &#123;</span><br><span class="line">        <span class="comment">//请求服务器的地址</span></span><br><span class="line">        <span class="attr">proxy</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;/&#x27;</span>: &#123;</span><br><span class="line">                <span class="comment">//目标服务器,代理访问到http://localhost:8888</span></span><br><span class="line">                <span class="attr">target</span>: <span class="string">&quot;http://localhost:3000&quot;</span>,</span><br><span class="line">                <span class="attr">changOrigin</span>: <span class="literal">true</span>, <span class="comment">//开启代理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后是在服务器配置cors解决跨域</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> io = <span class="built_in">require</span>(<span class="string">&#x27;socket.io&#x27;</span>)(httpServer, &#123;</span><br><span class="line">  <span class="comment">//如果前端代理不能解决跨域，建议,配置cors，解决同源策略问题</span></span><br><span class="line">  <span class="attr">cors</span>: &#123;</span><br><span class="line">    <span class="attr">origin</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">methods</span>: [<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果不使用socket.io-client就会发现还是会产生跨域问题，为啥？？？</p>
+<p>踩坑四：</p>
+<p>根本无法接收到服务器发送的数据，服务也无法接收到客户端发送的数据？？？？</p>
+<p>恭喜你，白看了。。。。。</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    js里bind、call、apply | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  js
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1622289796000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1622289796000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>js里bind、call、apply</h1>
+    <p>bind、call、apply的作用就是改变函数执行时的上下文，简而言之就是改变了函数的this指向。</p>
+<p><strong>举个例子</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;pzq帅比&#x27;</span></span><br><span class="line"><span class="keyword">const</span> obj =&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;sunny&quot;</span></span><br><span class="line">    <span class="attr">say</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="title function_">say</span>()<span class="comment">//sunny</span></span><br><span class="line"><span class="built_in">setTimeout</span>(obj.<span class="property">say</span>,<span class="number">500</span>)<span class="comment">//pzq帅比</span></span><br><span class="line"><span class="comment">//因为此时的this指向window对象</span></span><br></pre></td></tr></table></figure>
+
+<p>我们say放在了setTimeout方法中其实是作为回调函数来执行的，因此回到主栈执行时是在全局执行上下文的环境中执行的，这时候this指向window，所以输出pzq帅比</p>
+<p>我们实际需要的是this指向obj对象，这个时候就得改变this指向了。</p>
+<p>setTimeout(obj.say.bind(obj),0) &#x2F;&#x2F;sunny</p>
+<h4 id="1、区别"><a href="#1、区别" class="headerlink" title="1、区别"></a>1、区别</h4><p><strong>apply</strong></p>
+<p>​	接收两个参数，第一个参数是this的指向，第二个参数是函数接受的参数，以数组的形式传入。</p>
+<p>改变this指向后，原函数就会立即执行，且此方法只是临时改变this指向一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">...arg</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">arg</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="attr">myname</span>:<span class="string">&quot;张三&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">fn.<span class="title function_">apply</span>(obj,[<span class="number">1</span>,<span class="number">2</span>])<span class="comment">//this会变成传入的obj，传入的参数必须是一个数组。</span></span><br><span class="line"><span class="title function_">fn</span>(<span class="number">1</span>,<span class="number">2</span>)<span class="comment">//this指向window</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>bind</strong></p>
+<p>​	bind方法和call很相似，第一参数也是this的指向，后面传入的也是一个参数列表（但是这个参数列表可以分多次传入）改变this指向后不会立即执行，而是返回一个永久改变this指向的函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">...args</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>,args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="attr">myname</span>:<span class="string">&quot;张三&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bingFn = fn.<span class="title function_">bind</span>(obj)<span class="comment">//this 会编程传入和obj，bind不是立即执行的需要执行一次。</span></span><br><span class="line"><span class="title function_">bindFn</span>(<span class="number">1</span>,<span class="number">2</span>)<span class="comment">//this指向obj</span></span><br><span class="line"><span class="title function_">fn</span>(<span class="number">1</span>,<span class="number">3</span>)<span class="variable language_">this</span>指向<span class="variable language_">window</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>call</strong></p>
+<p>call方法的第一个参数也是this的指向，后面传入的是一个参数列表。</p>
+<p>跟apply一样改变this指向原函数就会立即执行。且此方法只是临时改变this指向一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">...args</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>,args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="attr">mynamae</span>:<span class="string">&quot;张三&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">fn.<span class="title function_">call</span>(obj,<span class="number">1</span>,<span class="number">2</span>)<span class="comment">//this会编程传入的obj，传入的参数必须是一个数组。</span></span><br><span class="line"><span class="title function_">fn</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>同样的当第一个参数为null 、undefined时，默认指向window(在浏览器中)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fn.<span class="title function_">call</span>(<span class="literal">null</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])<span class="comment">//this指向window</span></span><br><span class="line">fn.<span class="title function_">call</span>(<span class="literal">undefined</span>,[<span class="number">1</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<p><strong>从上面可以看到apply、call、bind的区别在于</strong></p>
+<p>三者都可以改变函数的this指向</p>
+<p>三者第一个参数都是this要指向的对象，如果没有这个参数或者参数为undefined或者null，则默认指向全局window</p>
+<p>三者都可以传参数，但是apply是数组，而call是参数列表，且apply和call是一次性传入参数，而bind可以分多此传入</p>
+<p>bind返回绑定this之后的函数，而apply、call则是立即执行。</p>
+<p><strong>怎么实现一个</strong>bind</p>
+<p>​	实现bind可以分为三个部分。</p>
+<p>1、修改this指向。</p>
+<p>2、动态传递参数</p>
+<p>3、兼容new 关键字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;潘子庆&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">24</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 手写bind函数</span></span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myBind</span> = <span class="keyword">function</span> (<span class="params">context</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> _this = <span class="variable language_">this</span>; <span class="comment">// 当前函数</span></span><br><span class="line">  <span class="keyword">let</span> args = <span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="variable language_">arguments</span>).<span class="title function_">slice</span>(<span class="number">1</span>); <span class="comment">// 将参数列表转化为数组,除去第一个参数外</span></span><br><span class="line">  <span class="comment">// 返回新函数</span></span><br><span class="line">  <span class="keyword">let</span> fn = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 如果被new调用，this应该是fn的实例</span></span><br><span class="line">    <span class="keyword">return</span> _this.<span class="title function_">apply</span>(<span class="variable language_">this</span> <span class="keyword">instanceof</span> fn ? <span class="variable language_">this</span> : (context || <span class="variable language_">window</span>), args.<span class="title function_">concat</span>(<span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="variable language_">arguments</span>)))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 维护fn的原型</span></span><br><span class="line">  <span class="keyword">let</span> temp = <span class="keyword">function</span> (<span class="params"></span>) &#123; &#125;</span><br><span class="line">  temp.<span class="property"><span class="keyword">prototype</span></span> = _this.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line">  fn.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title function_">temp</span>(); <span class="comment">// new的过程继承temp原型</span></span><br><span class="line">  <span class="keyword">return</span> fn</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 声明一个函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">a, b, c</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;函数内部this指向:&quot;</span>, <span class="variable language_">this</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;参数列表:&quot;</span>, a, b, c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> newFn = fn.<span class="title function_">myBind</span>(obj, <span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">let</span> newFn1 = fn.<span class="title function_">bind</span>(obj, <span class="number">10</span>, <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title function_">newFn</span>(<span class="string">&quot;myBind构造函数&quot;</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="title function_">newFn1</span>(<span class="string">&quot;bind构造函数&quot;</span>);</span><br></pre></td></tr></table></figure>
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

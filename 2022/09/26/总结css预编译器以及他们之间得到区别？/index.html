@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    总结css预编译器以及他们之间的区别？ | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  css
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1664167724000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1664167724000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>总结css预编译器以及他们之间的区别？</h1>
+    <p>一首先先搞明白css 预编译器是什么，css作为一门标记性的语言，语法相对来说简单，但是对使用者的要求较低，但是书写原生的css样式有一些问题，尽管有样式继承和 抽离公众样式，但是庞大的css文件仍然不方便维护以及扩展，不利于复用，尤其是对前端开发工程师来说，如果很缺少css的开发经验，首先就是编写的css代码复用性不高，且很难维护。</p>
+<p>而css预编译器便是针对上述问题的解决方案。</p>
+<p>预处理语言，扩充了css语言，增加了<strong>变量</strong>、<strong>混合</strong>、<strong>函数</strong>、等功能，它让css更容易维护、方便，但是本质上预处理器是css的超集。</p>
+<p>它包含一套自定义的语法及一个解析器，根据这些语法定义自己的样式规则，这些规则最终会通过解析器，编译生成对应的css文件。</p>
+<p>那么优秀的css预编译语言在前端领域中有哪些呢？</p>
+<ul>
+<li>sass</li>
+<li>less</li>
+<li>stylus</li>
+</ul>
+<h3 id="sass"><a href="#sass" class="headerlink" title="sass"></a>sass</h3><p>sass2007年诞生也是最早最成熟的css预处理器，拥有Ruby社区的支持，拥有compass这一最强大的css框架。</p>
+<p>文件后缀名为.sass与scss可以严格按照sass的缩进方式省去大括号和分号。</p>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><p>2009年出现，受sass影响较大，但是又使用css的语法，让开发者和设计师更快上手，缺点就是比起sass来可编程功能不够，但是也是可以兼容css。</p>
+<h3 id="stylus"><a href="#stylus" class="headerlink" title="stylus"></a>stylus</h3><p>它是一个css的预处理框架2010年产生，来自node.js社区，主要来给Node项目进行css预处理支持，所以stylus是一种新型语言，可以创建健硕的动态的具有表现力的css，比较年轻。其本质上做的事情和sass、less类似。</p>
+<p>说了这么多，虽然他们都很强大，但是使用最多的还是他们的特性。</p>
+<ul>
+<li>变量(variables)</li>
+<li>作用域(scope)</li>
+<li>代码混合(mixins)</li>
+<li>嵌套(nested rules)</li>
+<li>代码模块化</li>
+</ul>
+<p>基本使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">less和scss</span><br><span class="line">.box&#123;</span><br><span class="line">	display:block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sass和stylus</span><br><span class="line">.box</span><br><span class="line">	display:block</span><br></pre></td></tr></table></figure>
+
+<p>嵌套</p>
+<p>三者的嵌套语法一致，甚至连引用父级选择器的标记&amp;也一样。</p>
+<p>区别是sass和stylus可以用没有大括号的方式书写</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span>&#123;</span><br><span class="line">    &amp;<span class="selector-class">.b</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>:red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>变量</p>
+<p>变量无疑为css增加了一种有效的复用方式，减少了原来在css中无法避免的重复</p>
+<p>less声明得变量必须以@开头，后面紧跟变量名和变量值，而且变量名和变量值要使用冒号：分隔开</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@color</span>:#000;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:color</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>stylus声明的变量没有任何的限定，可以使用$开头，结尾的分号；可有可无，但是变量与变量之间需要使用&#x3D;，在stylus中不建议使用@符号开头声明变量。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redColor=<span class="selector-id">#c00</span></span><br><span class="line"><span class="selector-tag">div</span></span><br><span class="line"> <span class="attribute">color</span>:redColor</span><br></pre></td></tr></table></figure>
+<p>tips：在sass中最好不要定义相同的变量名。</p>
+<h3 id="混入Mixin"><a href="#混入Mixin" class="headerlink" title="混入Mixin"></a>混入Mixin</h3><p>混入应该是预处理器最精髓的功能之一，简单说，mixins可以将一部分样式抽离出，作为单独定义的模块，被很多选择器重复使用。<br>在less中，混入的用法是将定义好的class甲引入另一个定义好的class乙，也能传递参数，参数变量是@声明的。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.alert</span>&#123;</span><br><span class="line">    <span class="attribute">font-weight</span>:<span class="number">700</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hightlight</span>(<span class="variable">@color</span>:red)&#123;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">1.2em</span>;</span><br><span class="line">    <span class="attribute">color</span>:<span class="variable">@color</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">``注意看这里``</span><br><span class="line"><span class="selector-class">.heads-up</span>&#123;</span><br><span class="line">    <span class="selector-class">.alert</span>;</span><br><span class="line">    <span class="selector-class">.hightlight</span>(red)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么在sass中我们声明mixins时需要使用@mixin，后面要加上mixin的名字，也可以设置参数，参数名为变量$声明的形式。<br>那么如何使用呢？@include 加上声明的@mixin的名字即可</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> largeText&#123;</span><br><span class="line">    <span class="attribute">font</span>&#123;</span><br><span class="line">        family:Arial;</span><br><span class="line">        size:<span class="number">20px</span>;</span><br><span class="line">        weight:bold;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.title</span>&#123;</span><br><span class="line">    <span class="keyword">@include</span> largeText;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>而stylus中的混合和前两款，css预处理器语言的混合略有不同，他可以不适用任何符号，就是直接声明mixins名字。然后定义参数时或者默认值的时候使用&#x3D;来进行连接。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Title(borderWidth=<span class="number">2px</span>)&#123;</span><br><span class="line">    <span class="attribute">border</span>:borderWidth solid <span class="number">#f00</span>;</span><br><span class="line">    <span class="attribute">color</span>:white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">Nav</span>-error&#123;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">5px</span>;</span><br><span class="line">    Title()<span class="comment">/*他就像js的函数一样，调用mixins*/</span></span><br><span class="line">&#125;</span><br><span class="line">Login-error&#123;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">15px</span>;</span><br><span class="line">    Title(<span class="number">10px</span>)<span class="comment">/*修改mixins的默认参数*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以上就是我对预编译器的理解</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

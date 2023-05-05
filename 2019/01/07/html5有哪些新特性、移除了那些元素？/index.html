@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    html5有哪些新特性、移除了那些元素？ | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  HTML 、 HTTP 、WEB
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1546824083000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1546824083000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>html5有哪些新特性、移除了那些元素？</h1>
+    <ul>
+<li><code>HTML5</code> 现在已经不是 <code>SGML</code> 的子集，主要是关于图像，位置，存储，多任务等功能的增加<ul>
+<li>新增选择器 <code>document.querySelector</code>、<code>document.querySelectorAll</code></li>
+<li>拖拽释放(<code>Drag and drop</code>) API</li>
+<li>媒体播放的 <code>video</code> 和 <code>audio</code></li>
+<li>本地存储 <code>localStorage</code> 和 <code>sessionStorage</code></li>
+<li>离线应用 <code>manifest</code></li>
+<li>桌面通知 <code>Notifications</code></li>
+<li>语意化标签 <code>article</code>、<code>footer</code>、<code>header</code>、<code>nav</code>、<code>section</code></li>
+<li>增强表单控件 <code>calendar</code>、<code>date</code>、<code>time</code>、<code>email</code>、<code>url</code>、<code>search</code></li>
+<li>地理位置 <code>Geolocation</code></li>
+<li>多任务 <code>webworker</code></li>
+<li>全双工通信协议 <code>websocket</code></li>
+<li>历史管理 <code>history</code></li>
+<li>跨域资源共享(CORS) <code>Access-Control-Allow-Origin</code></li>
+<li>页面可见性改变事件 <code>visibilitychange</code></li>
+<li>跨窗口通信 <code>PostMessage</code></li>
+<li><code>Form Data</code> 对象</li>
+<li>绘画 <code>canvas</code></li>
+</ul>
+</li>
+<li>移除的元素：<ul>
+<li>纯表现的元素：<code>basefont</code>、<code>big</code>、<code>center</code>、<code>font</code>、 <code>s</code>、<code>strike</code>、<code>tt</code>、<code>u</code></li>
+<li>对可用性产生负面影响的元素：<code>frame</code>、<code>frameset</code>、<code>noframes</code></li>
+</ul>
+</li>
+<li>支持<code>HTML5</code>新标签：<ul>
+<li><code>IE8/IE7/IE6</code>支持通过<code>document.createElement</code>方法产生的标签</li>
+<li>可以利用这一特性让这些浏览器支持<code>HTML5</code>新标签</li>
+<li>浏览器支持新标签后，还需要添加标签默认的样式</li>
+</ul>
+</li>
+<li>当然也可以直接使用成熟的框架、比如<code>html5shim</code></li>
+</ul>
+<p><strong>如何区分 HTML 和 HTML5</strong></p>
+<ul>
+<li><code>DOCTYPE</code>声明、新增的结构元素、功能元素</li>
+</ul>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>

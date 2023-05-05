@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    说说对css模块化的理解 | 欢乐时光
+  </title>
+  <meta name="description" content="">
+  
+  <meta name="keywords" content="
+  css
+  ">
+  
+  <meta name="author" content="TKSun">
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+
+  <link rel="icon" type="image/svg+xml" href="/fonts//favicon-light.svg">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet"
+        href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/algolia.css"/>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/moment.min.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github-alt"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="algolia-search">
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification" onclick="alert('hello~')">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars.githubusercontent.com/u/28857867?v=4"> <i class="fa fa-caret-down"></i></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i
+                  class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives"
+           class="header-toolbar-right"> 45 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i
+                  class="fa fa-tags"></i> Tags </a>
+        <a href="/tags"
+           class="header-toolbar-right"> 16 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i
+                  class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories"
+           class="header-toolbar-right"> 23 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">欢乐时光</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    TKSun
+
+    <span class="post-date float-right" title="{{moment(1673757822000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      
+          <i class="fa fa-pencil-square-o"></i>
+      
+      {{moment(1673757822000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>说说对css模块化的理解</h1>
+    <p>学习前段时，我们经历的css的发展历程。</p>
+<p>1、手写源生css样式。<br>2、使用css预处理器。sass&#x2F;less<br>3、使用后处理器postCss<br>4、使用css modules<br>5、使用css in js</p>
+<p>其实我们一开始在写css的时候，就已经知道了它的规律，无非就是以下的几种情况。<br>1、行内样式<br>2、@import 导入其他样式提供给当前页面使用。<br>3、内嵌<code>&lt;style&gt;&lt;/style&gt;</code>给当前页面写样式<br>4、外部样式 <code>&lt;Link/&gt;</code>加载样式。</p>
+<h3 id="使用行内样式有什么缺点吗？"><a href="#使用行内样式有什么缺点吗？" class="headerlink" title="使用行内样式有什么缺点吗？"></a>使用行内样式有什么缺点吗？</h3><ul>
+<li>样式不能复用</li>
+<li>样式权重值太高</li>
+<li>样式也不容易被覆盖</li>
+<li>表现层和结构层没有分离</li>
+<li>不能进行缓存，影响加载效率。</li>
+</ul>
+<p>那为什么不建议使用导入样式呢？</p>
+<ul>
+<li>@import 会在所有的资源加载完成后再去加载。</li>
+<li>由于@import会导致样式表的延后加载，可能会让页面样式闪烁。</li>
+</ul>
+<p>使用预处理器sass&#x2F;less预处理器</p>
+<p>​	随着时间的不断发展，我们逐渐发现，编写源生的css其实并不友好，原生的css不支持变量，不支持嵌套，不支持父选择器，正是因为有这些问题，才催生了less、sass这样的预编译期。</p>
+<p>预处理器强化了css的语法， 弥补了这些问题，但是本质上，打包出来的结果和源生的css都是一样的只不过在开发时，会很顺滑。</p>
+<p>后处理器postCss，相当于是css里的babel，一般会配合stylelint校验css语法。</p>
+<h3 id="css模块化迅速发展"><a href="#css模块化迅速发展" class="headerlink" title="css模块化迅速发展"></a>css模块化迅速发展</h3><p>随着react、vue这些前端框架的普及以及使用，我们编写源生css的机会也越来越少，我们常常将页面拆分成多个小组件，然后像搭积木一样将多个小组件组成最终呈现的页面。</p>
+<p>css模块化的出现解决了哪些问题?</p>
+<p>class的命名重复，选择器层级不清晰，css代码难以复用。</p>
+<p>css模块化实现的方式是BEM 意思就是block、元素element、修饰符modifier。这种巧妙的命名方法会让你的css类对其他开发者更加透明且更加有意义。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">块就是我们所说的web应用开发中的组件或模块，每个块在逻辑和功能上都是相互独立的。</span><br><span class="line"><span class="selector-class">.block</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">元素是块中的组成部分，元素不能离开块使用，BEM不推荐在元素中嵌套其他元素。</span><br><span class="line"><span class="selector-class">.block_element</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">修饰符用来定义块或者元素的外观和行为，同样的块在应用在应用不同的修饰符之后，会有不同的外观</span><br><span class="line"><span class="selector-class">.block--modifier</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>css modules指的是我们要像import js一样引入我们的css代码，代码中的每个类名都是引入对象的一个属性，通过这种方式，即可在使用时明确指定所引用的css样式。</p>
+<p>并且css modules在打包的时候会自动将类名转换成hash值，完全杜绝css类名冲突的问题。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.className</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 编写全局样式 */</span></span><br><span class="line">:<span class="built_in">global</span>(.className) &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 样式复用 */</span></span><br><span class="line"><span class="selector-class">.otherClassName</span> &#123;</span><br><span class="line">  composes: className;</span><br><span class="line">  <span class="attribute">color</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.otherClassName</span> &#123;</span><br><span class="line">  composes: className from <span class="string">&quot;./style.css&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在js模块中导入css文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">&#x27;./styles.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line">element.<span class="property">innerHTML</span> = <span class="string">&#x27;&lt;div class=&quot;&#x27;</span> + styles.<span class="property">className</span> + <span class="string">&#x27;&quot;&gt;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>配置css-loader</p>
+<p>css modules不能直接使用，而是需要进行打包，一般通过配置css-laoder中的modules，属性即可完成css modules的配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line">modules.<span class="property">exports</span>=&#123;</span><br><span class="line">    <span class="attr">modules</span>:&#123;</span><br><span class="line">        <span class="attr">rules</span>:[</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">test</span>:<span class="regexp">/\.css$/</span>,</span><br><span class="line">                <span class="attr">options</span>:&#123;</span><br><span class="line">                    <span class="attr">modules</span>:&#123;</span><br><span class="line">                        <span class="comment">//自定义hash名称</span></span><br><span class="line">                        <span class="attr">localIdentName</span>:<span class="string">`[path][name]__[local]--[hash:base64:5],`</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么最终打包出来的css类名就是由一长串hash值生成。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">._2DHwuiHWMnKTOYG45T0x34 &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">._10B-buq6_BEOTOl9urIjf8 &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="css-in-js"><a href="#css-in-js" class="headerlink" title="css in js"></a>css in js</h3><p>意思就是使用js语言写css，完全不需要些单独的css文件，所有的css代码全部放在组件内部，以实现css的模块化，css in js其实是一种编写思想，目前已经有超过40多种方案的实现最出名的就是styled-components</p>
+<p>react的支持力度也是最大的</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">&#x27;styled-components&#x27;</span>;</span><br><span class="line"><span class="comment">//创建一个带样式的h1标签</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Title</span> = styled.<span class="property">h1</span><span class="string">`</span></span><br><span class="line"><span class="string">	font-size:1.5em;</span></span><br><span class="line"><span class="string">	text-align:center;</span></span><br><span class="line"><span class="string">	color:palevioletred;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="comment">//创建一个带样式的section标签</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Wrapper</span> = styled.<span class="property">section</span><span class="string">`</span></span><br><span class="line"><span class="string">	padding:4em;</span></span><br><span class="line"><span class="string">	background:papayawhip;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="comment">//通过属性动态定义样式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Button</span> = styled.<span class="property">button</span><span class="string">`</span></span><br><span class="line"><span class="string">	background:<span class="subst">$&#123;props =&gt;(props.primary ? <span class="string">&quot;palev ioletred&quot;</span>:<span class="string">&quot;white&quot;</span>)&#125;</span>;</span></span><br><span class="line"><span class="string">	font-size:1em;</span></span><br><span class="line"><span class="string">	margin:1em;</span></span><br><span class="line"><span class="string">	padding:0.25em 1em;</span></span><br><span class="line"><span class="string">	border:2px solid palevioletred;</span></span><br><span class="line"><span class="string">	border-radius:3px;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="comment">//样式复用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">TomatoButton</span> = <span class="title function_">styled</span>(<span class="title class_">Button</span>)<span class="string">`</span></span><br><span class="line"><span class="string">	color:tomato;</span></span><br><span class="line"><span class="string">	border-color:tomato;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="comment">//使用时</span></span><br><span class="line"><span class="keyword">return</span>(</span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">Wrapper</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    	<span class="tag">&lt;<span class="name">Title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    		Hello World this is my first styled component!</span></span><br><span class="line"><span class="language-xml">    	<span class="tag">&lt;/<span class="name">Title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Button</span> <span class="attr">primary</span>&gt;</span>普通按钮<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">Wrapper</span>&gt;</span></span></span><br><span class="line">	</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>最后奉上一张图</p>
+<p> <img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/12/30/16f5477372d2bee3~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"> </p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <ul class="footer-social-link">
+      <li>© 2023 TKSun</li>
+      <li><a href="http://example.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+       ❤ Powered by Hexo<br/>
+	<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">冀ICP备2022001373号</a>
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+<script src="/js/algolia.js"></script>
+<script type="text/javascript">
+    docsearch({
+        appId: 'FNZPML1OLQ',
+        apiKey: '284c6920b314ebfc7427b12f1ae9e4a2',
+        indexName: 'tksun',
+        container: '#algolia-search',
+        debug: false // Set debug to true if you want to inspect the modal
+    });
+</script>
+</html>
